@@ -3,8 +3,15 @@ import logo from './../images/app_icon.png';
 import Carousel from 'react-multi-carousel';
 import "react-multi-carousel/lib/styles.css";
 import CardComponent from "./CardComponent";
+import TableComponent from "./TableComponent";
 
 interface WeatherProps {
+    forecast: {
+        date: string,
+        icon: string,
+        max: number, 
+        min: number
+    }[],
     daily: {
         icon: string,
         description: string,
@@ -12,7 +19,7 @@ interface WeatherProps {
     }[]
 }
 
-export default function WeatherPage({ daily }: WeatherProps) {
+export default function WeatherPage({ forecast, daily }: WeatherProps) {
     const dates = getDates(); // Returns list of dates of today and next 4 days
     const [hourlyDay, setHourlyDay] = useState(''); // Determines what day to display hourly forecast
     const responsive = { // Display settings for react-multi-carousel
@@ -67,7 +74,9 @@ export default function WeatherPage({ daily }: WeatherProps) {
                         <CardComponent date = {dates[4]} image = {daily[4].icon} temp = {daily[4].temp} desc = {daily[4].description}/>
                     </div>
                 </Carousel>
-                
+
+                <TableComponent day = {hourlyDay} myArray = {forecast}/>
+
             </div>
         </>
     );

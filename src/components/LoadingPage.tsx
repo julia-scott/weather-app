@@ -5,7 +5,7 @@ import WeatherPage from "./WeatherPage";
 export default function LoadingPage() {
 
     const [dailyData, setDailyData] = useState([]);
-    const [forecastData, setForecastData] = useState({});
+    const [forecastData, setForecastData] = useState([]);
     const [done, setDone] = useState(false);
 
     useEffect(() => {
@@ -20,7 +20,14 @@ export default function LoadingPage() {
                         return response.json();
                     }));
                 }).then((data) => {
-                    setForecastData(data[0]); // Variable for forecast API response
+                    setForecastData(data[0].list.map((e: any) => {
+                        return ({
+                            date: e.dt_txt,
+                            icon: e.weather[0].icon,
+                            max: Math.round(e.main.temp_max), 
+                            min: Math.round(e.main.temp_min)
+                        });
+                    })); // Variable for forecast API response
                     setDailyData(data[1].daily.map((e: any) => {
                         return ({
                             icon: e.weather[0].icon,
@@ -50,7 +57,7 @@ export default function LoadingPage() {
                 // Display weather page when done fetching data
                 // Send API responses as props
                 <div>
-                    <WeatherPage daily = {dailyData}/>
+                    <WeatherPage forecast = {forecastData} daily = {dailyData}/>
                 </div>
             )}
         </>
