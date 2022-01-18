@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import ReactLoading from "react-loading";
+import WeatherPage from "./WeatherPage";
 
 export default function LoadingPage() {
 
-    const [dailyData, setDailyData] = useState({});
+    const [dailyData, setDailyData] = useState([]);
     const [forecastData, setForecastData] = useState({});
     const [done, setDone] = useState(false);
 
@@ -20,7 +21,13 @@ export default function LoadingPage() {
                     }));
                 }).then((data) => {
                     setForecastData(data[0]); // Variable for forecast API response
-                    setDailyData(data[1]); // Variable for onecall API response
+                    setDailyData(data[1].daily.map((e: any) => {
+                        return ({
+                            icon: e.weather[0].icon,
+                            description: e.weather[0].description,
+                            temp: e.temp.day
+                        })
+                    })); // Variable for onecall API response
                     setDone(true); // State variable, determines when to show loading page
                 }).catch((error) => {
                     console.log(error);
@@ -43,7 +50,7 @@ export default function LoadingPage() {
                 // Display weather page when done fetching data
                 // Send API responses as props
                 <div>
-                    <p>hello</p>
+                    <WeatherPage daily = {dailyData}/>
                 </div>
             )}
         </>
