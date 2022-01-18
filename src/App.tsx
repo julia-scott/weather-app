@@ -1,14 +1,11 @@
 import React from 'react';
 import './App.css';
+import LoadingPage from "./components/LoadingPage";
 
-function App() {
+export default function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>Hello</p>
-      </header>
+        <LoadingPage/>
     </div>
   );
 }
-
-export default App;
