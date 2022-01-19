@@ -3,7 +3,11 @@ import ReactLoading from "react-loading";
 import WeatherPage from "./WeatherPage";
 import { LoadingStyle } from "./../styles/StyledComponents";
 
-export default function LoadingPage() {
+type LoadingProps = {
+    city: string
+}
+
+export default function LoadingPage({ city }: LoadingProps) {
 
     const [dailyData, setDailyData] = useState([]);
     const [forecastData, setForecastData] = useState([]);
@@ -18,6 +22,7 @@ export default function LoadingPage() {
                 fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=59.912731&lon=10.74609&appid=${apiKey}&exclude=current,minutely,hourly,alerts&units=metric`)
                 ]).then((responses) => {
                     return Promise.all(responses.map(function (response) {
+                        console.log(response);
                         return response.json();
                     }));
                 }).then((data) => {
@@ -49,7 +54,7 @@ export default function LoadingPage() {
             {!done ? (
                 // Display loading page when not done fetching data
                 <LoadingStyle>
-                    <h1>Fetching weather data for Oslo, Norway</h1>
+                    <h1>Fetching weather data for {city}</h1>
                     <p>*elevator music*</p>
                     <ReactLoading type="spokes" color="#F4D772" height={100} width={50}/>
                 </LoadingStyle>
@@ -57,7 +62,7 @@ export default function LoadingPage() {
                 // Display weather page when done fetching data
                 // Send API responses as props
                 <div>
-                    <WeatherPage forecast = {forecastData} daily = {dailyData}/>
+                    <WeatherPage city = {city} forecast = {forecastData} daily = {dailyData}/>
                 </div>
             )}
         </>
