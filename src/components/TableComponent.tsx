@@ -1,18 +1,7 @@
 import React from "react";
-import styled from "styled-components";
+import { TableTitle, TableStyle } from "./../styles/StyledComponents";
 
-const Title = styled.h4`
-    text-align: left;
-    margin: 5vh 0 2vh 0;
-`;
-
-const TableStyle = styled.div`
-    align-content: center;
-    width: 70vw;
-    max-width: 870px;
-`;
-
-interface TableProps {
+type TableProps = {
     day: string,
     myArray: {
         date: string,
@@ -40,7 +29,7 @@ export default function TableComponent({ day, myArray }: TableProps) {
 
     return (
         <>
-            <Title>{day}</Title>
+            <TableTitle>{day}</TableTitle>
             <TableStyle>
                 <div className="row">
                     {

@@ -5,25 +5,9 @@ import Carousel from 'react-multi-carousel';
 import "react-multi-carousel/lib/styles.css";
 import CardComponent from "./CardComponent";
 import TableComponent from "./TableComponent";
-import styled from "styled-components";
+import { Title, Logo } from "./../styles/StyledComponents";
 
-const Title = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    margin: 5vh;
-    color: white;
-`;
-
-const Logo = styled.img`
-    float: left;
-    height: calc(25px + 2vmin);
-    padding-right: 1vw;
-`;
-
-interface WeatherProps {
+type WeatherProps = {
     forecast: {
         date: string,
         icon: string,

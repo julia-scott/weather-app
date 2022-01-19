@@ -1,16 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactLoading from "react-loading";
 import WeatherPage from "./WeatherPage";
-import styled from "styled-components";
-
-const LoadingStyle = styled.div`
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: white;
-`;
+import { LoadingStyle } from "./../styles/StyledComponents";
 
 export default function LoadingPage() {
 
