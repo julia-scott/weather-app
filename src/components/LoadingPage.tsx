@@ -22,7 +22,6 @@ export default function LoadingPage({ city }: LoadingProps) {
                 fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=59.912731&lon=10.74609&appid=${apiKey}&exclude=current,minutely,hourly,alerts&units=metric`)
                 ]).then((responses) => {
                     return Promise.all(responses.map(function (response) {
-                        console.log(response);
                         return response.json();
                     }));
                 }).then((data) => {
@@ -35,7 +34,6 @@ export default function LoadingPage({ city }: LoadingProps) {
                         });
                     })); // Variable for forecast API response
                     setDailyData(data[1].daily.map((e: any) => {
-                        console.log(e);
                         return ({
                             icon: e.weather[0].icon,
                             description: e.weather[0].description,

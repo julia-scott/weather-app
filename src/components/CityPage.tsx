@@ -9,34 +9,24 @@ export default function CityPage() {
     });
     const [searchTerm, setSearchTerm] = useState('');
     const [errorText, setErrorText] = useState('');
+    const [dailyData, setDailyData] = useState([]);
+    const [forecastData, setForecastData] = useState([]);
     const [done, setDone] = useState(false);
 
     const searchCity = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // Check if valid location name
-        Promise.all([
-            openWeather.getCurrentWeatherByCityName({
-                cityName: searchTerm
-            }),
-            openWeather.getThreeHourForecastByCityName({
-                cityName: searchTerm
-            })]).then((responses) => {
-                console.log(responses);
-                return Promise.all(responses.map(function (response) {
-                    if (response.cod != 200){
-                        throw response;
-                    };
-                    return response;
-                }));
-            }).then((data) => {
-                console.log(data[0]);
-                console.log(data[1]);
-                setDone(true); // State variable, determines when to show loading page
-            }).catch((error) => {
-                setErrorText(error.message);
-                console.log(error.message);
-            });
 
+        openWeather.getThreeHourForecastByCityName({
+            cityName: searchTerm
+        }).then((data) => {
+            if (data.cod !== '200'){
+                throw data.message;
+            };
+            setDone(true);
+        }).catch((error) => {
+            setErrorText(error);
+            console.log(error);
+        });
     };
 
     return(
