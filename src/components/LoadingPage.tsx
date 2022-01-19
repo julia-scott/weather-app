@@ -70,7 +70,7 @@ export default function LoadingPage({ city }: LoadingProps) {
                     console.log(error);
                 });
         }, 2000);
-    }, []);
+    }, [city, lat, lng]);
 
     return(
         <>

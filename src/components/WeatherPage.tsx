@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from './../images/app_icon.png';
 import Carousel from 'react-multi-carousel';
 import "react-multi-carousel/lib/styles.css";
 import CardComponent from "./CardComponent";
 import TableComponent from "./TableComponent";
 import { Title, Logo, CarouselStyle } from "./../styles/StyledComponents";
-import CityPage from './CityPage';
 
 type WeatherProps = {
     city: string,
@@ -50,7 +49,6 @@ export default function WeatherPage({ city, forecast, daily }: WeatherProps) {
 
     return (
         <>
-            {/* <CityPage/> */}
             <Title>
                 <Logo src={logo} className="App-logo" alt="logo"/>
                 <h1>{city} Weather Forecast</h1>
@@ -79,14 +77,14 @@ export default function WeatherPage({ city, forecast, daily }: WeatherProps) {
                 </Carousel>
             </CarouselStyle>
 
-            <TableComponent day = {hourlyDay} myArray = {forecast}/>
+            <TableComponent day = {hourlyDay} myArray = {forecast} />
         </>
     );
 }
 
 function getDates() {
     var dates = [];
-    var startDate = new Date(); // Today's date
+    var startDate = new Date(new Date().toLocaleString('en-US', { timeZone: "UTC" })); // Today's date
     var nextDate = new Date(startDate);
 
     // Get 4 dates past today
@@ -105,7 +103,7 @@ function formatDate(date: Date) {
         day: 'numeric',
         year: 'numeric',
         month: 'short',
-        timeZone: "CET"
+        timeZone: 'UTC'
     });
     return (newDate);
 }
