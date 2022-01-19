@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import './WeatherPage.css';
 import logo from './../images/app_icon.png';
 import Carousel from 'react-multi-carousel';
 import "react-multi-carousel/lib/styles.css";
