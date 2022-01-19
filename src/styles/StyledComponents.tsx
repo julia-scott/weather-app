@@ -1,5 +1,14 @@
 import styled from "styled-components";
 
+export const AppStyle = styled.div`
+    text-align: center;
+    background-color: #87ceeb;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
 export const LoadingStyle = styled.div`
     min-height: 100vh;
     display: flex;
@@ -23,6 +32,12 @@ export const Logo = styled.img`
     float: left;
     height: calc(25px + 2vmin);
     padding-right: 1vw;
+`;
+
+export const CarouselStyle = styled.div`
+    align-content: center;
+    max-width: 870px;
+    cursor: pointer;
 `;
 
 export const TableTitle = styled.h4`
