@@ -9,8 +9,6 @@ export default function CityPage() {
     });
     const [searchTerm, setSearchTerm] = useState('');
     const [errorText, setErrorText] = useState('');
-    const [dailyData, setDailyData] = useState([]);
-    const [forecastData, setForecastData] = useState([]);
     const [done, setDone] = useState(false);
 
     const searchCity = (e: React.FormEvent<HTMLFormElement>) => {
@@ -34,7 +32,7 @@ export default function CityPage() {
             {!done ? (
                 <>
                     <Title>
-                        <h1>Select a location</h1>
+                        <h1>Enter a city</h1>
                     </Title>
                     <form onSubmit={searchCity}>
                         <input 
