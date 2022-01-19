@@ -4,8 +4,9 @@ import Carousel from 'react-multi-carousel';
 import "react-multi-carousel/lib/styles.css";
 import CardComponent from "./CardComponent";
 import TableComponent from "./TableComponent";
+import { Title, Logo, CarouselStyle } from "./../styles/StyledComponents";
 
-interface WeatherProps {
+type WeatherProps = {
     forecast: {
         date: string,
         icon: string,
@@ -47,12 +48,11 @@ export default function WeatherPage({ forecast, daily }: WeatherProps) {
 
     return (
         <>
-            <div className="Weather-page">
-                <div className="title">
-                    <img src={logo} className="App-logo" alt="logo"/>
-                    <h1>Oslo, Norway Weather Forecast</h1>
-                </div>
-                
+            <Title>
+                <Logo src={logo} className="App-logo" alt="logo"/>
+                <h1>Oslo, Norway Weather Forecast</h1>
+            </Title>
+            <CarouselStyle>
                 <Carousel 
                     className="card-carousel"
                     responsive={responsive}
@@ -74,10 +74,9 @@ export default function WeatherPage({ forecast, daily }: WeatherProps) {
                         <CardComponent date = {dates[4]} image = {daily[4].icon} temp = {daily[4].temp} desc = {daily[4].description}/>
                     </div>
                 </Carousel>
+            </CarouselStyle>
 
-                <TableComponent day = {hourlyDay} myArray = {forecast}/>
-
-            </div>
+            <TableComponent day = {hourlyDay} myArray = {forecast}/>
         </>
     );
 }

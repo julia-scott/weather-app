@@ -1,6 +1,7 @@
 import React from "react";
+import { TableTitle, TableStyle } from "./../styles/StyledComponents";
 
-interface TableProps {
+type TableProps = {
     day: string,
     myArray: {
         date: string,
@@ -28,8 +29,8 @@ export default function TableComponent({ day, myArray }: TableProps) {
 
     return (
         <>
-            <h4 className="table-head">{day}</h4>
-            <div className="container">
+            <TableTitle>{day}</TableTitle>
+            <TableStyle>
                 <div className="row">
                     {
                         newArray.map(e => {
@@ -48,7 +49,7 @@ export default function TableComponent({ day, myArray }: TableProps) {
                         })
                     }
                 </div>
-            </div>
+            </TableStyle>
         </>
     );
 }
