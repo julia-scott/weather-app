@@ -1,9 +1,27 @@
 import React, { useState } from "react";
+import './WeatherPage.css';
 import logo from './../images/app_icon.png';
 import Carousel from 'react-multi-carousel';
 import "react-multi-carousel/lib/styles.css";
 import CardComponent from "./CardComponent";
 import TableComponent from "./TableComponent";
+import styled from "styled-components";
+
+const Title = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    margin: 5vh;
+    color: white;
+`;
+
+const Logo = styled.img`
+    float: left;
+    height: calc(25px + 2vmin);
+    padding-right: 1vw;
+`;
 
 interface WeatherProps {
     forecast: {
@@ -47,37 +65,34 @@ export default function WeatherPage({ forecast, daily }: WeatherProps) {
 
     return (
         <>
-            <div className="Weather-page">
-                <div className="title">
-                    <img src={logo} className="App-logo" alt="logo"/>
-                    <h1>Oslo, Norway Weather Forecast</h1>
+            <Title>
+                <Logo src={logo} className="App-logo" alt="logo"/>
+                <h1>Oslo, Norway Weather Forecast</h1>
+            </Title>
+            
+            <Carousel 
+                className="card-carousel"
+                responsive={responsive}
+                showDots={false}
+                focusOnSelect={false}>
+                <div onClick={() => {setHourlyDay(dates[0])}}>
+                    <CardComponent date = {dates[0]} image = {daily[0].icon} temp = {daily[0].temp} desc = {daily[0].description}/>
                 </div>
-                
-                <Carousel 
-                    className="card-carousel"
-                    responsive={responsive}
-                    showDots={false}
-                    focusOnSelect={false}>
-                    <div onClick={() => {setHourlyDay(dates[0])}}>
-                        <CardComponent date = {dates[0]} image = {daily[0].icon} temp = {daily[0].temp} desc = {daily[0].description}/>
-                    </div>
-                    <div onClick={() => {setHourlyDay(dates[1])}}>
-                        <CardComponent date = {dates[1]} image = {daily[1].icon} temp = {daily[1].temp} desc = {daily[1].description}/>
-                    </div>
-                    <div onClick={() => {setHourlyDay(dates[2])}}>
-                        <CardComponent date = {dates[2]} image = {daily[2].icon} temp = {daily[2].temp} desc = {daily[2].description}/>
-                    </div>
-                    <div onClick={() => {setHourlyDay(dates[3])}}>
-                        <CardComponent date = {dates[3]} image = {daily[3].icon} temp = {daily[3].temp} desc = {daily[3].description}/>
-                    </div>
-                    <div onClick={() => {setHourlyDay(dates[4])}}>
-                        <CardComponent date = {dates[4]} image = {daily[4].icon} temp = {daily[4].temp} desc = {daily[4].description}/>
-                    </div>
-                </Carousel>
+                <div onClick={() => {setHourlyDay(dates[1])}}>
+                    <CardComponent date = {dates[1]} image = {daily[1].icon} temp = {daily[1].temp} desc = {daily[1].description}/>
+                </div>
+                <div onClick={() => {setHourlyDay(dates[2])}}>
+                    <CardComponent date = {dates[2]} image = {daily[2].icon} temp = {daily[2].temp} desc = {daily[2].description}/>
+                </div>
+                <div onClick={() => {setHourlyDay(dates[3])}}>
+                    <CardComponent date = {dates[3]} image = {daily[3].icon} temp = {daily[3].temp} desc = {daily[3].description}/>
+                </div>
+                <div onClick={() => {setHourlyDay(dates[4])}}>
+                    <CardComponent date = {dates[4]} image = {daily[4].icon} temp = {daily[4].temp} desc = {daily[4].description}/>
+                </div>
+            </Carousel>
 
-                <TableComponent day = {hourlyDay} myArray = {forecast}/>
-
-            </div>
+            <TableComponent day = {hourlyDay} myArray = {forecast}/>
         </>
     );
 }

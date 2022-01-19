@@ -1,4 +1,16 @@
 import React from "react";
+import styled from "styled-components";
+
+const Title = styled.h4`
+    text-align: left;
+    margin: 5vh 0 2vh 0;
+`;
+
+const TableStyle = styled.div`
+    align-content: center;
+    width: 70vw;
+    max-width: 870px;
+`;
 
 interface TableProps {
     day: string,
@@ -28,8 +40,8 @@ export default function TableComponent({ day, myArray }: TableProps) {
 
     return (
         <>
-            <h4 className="table-head">{day}</h4>
-            <div className="container">
+            <Title>{day}</Title>
+            <TableStyle>
                 <div className="row">
                     {
                         newArray.map(e => {
@@ -48,7 +60,7 @@ export default function TableComponent({ day, myArray }: TableProps) {
                         })
                     }
                 </div>
-            </div>
+            </TableStyle>
         </>
     );
 }

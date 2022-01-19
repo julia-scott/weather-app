@@ -1,6 +1,16 @@
 import React, { useState, useEffect } from "react";
 import ReactLoading from "react-loading";
 import WeatherPage from "./WeatherPage";
+import styled from "styled-components";
+
+const LoadingStyle = styled.div`
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+`;
 
 export default function LoadingPage() {
 
@@ -29,6 +39,7 @@ export default function LoadingPage() {
                         });
                     })); // Variable for forecast API response
                     setDailyData(data[1].daily.map((e: any) => {
+                        console.log(e);
                         return ({
                             icon: e.weather[0].icon,
                             description: e.weather[0].description,
@@ -46,13 +57,11 @@ export default function LoadingPage() {
         <>
             {!done ? (
                 // Display loading page when not done fetching data
-                <div className="Load-page">
-                    <div className="Load-text">
-                        <h1>Fetching weather data for Oslo, Norway</h1>
-                        <p>*elevator music*</p>
-                        <ReactLoading type="spokes" color="#F4D772" height={100} width={50}/>
-                    </div>
-                </div>
+                <LoadingStyle>
+                    <h1>Fetching weather data for Oslo, Norway</h1>
+                    <p>*elevator music*</p>
+                    <ReactLoading type="spokes" color="#F4D772" height={100} width={50}/>
+                </LoadingStyle>
             ) : (
                 // Display weather page when done fetching data
                 // Send API responses as props
