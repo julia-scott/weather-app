@@ -4,10 +4,6 @@ import OpenWeatherMap from 'openweathermap-ts';
 import LoadingPage from './LoadingPage';
 import { Input } from '@cognite/cogs.js';
 
-type CityProps = {
-    e: React.FormEvent<HTMLFormElement>
-}
-
 export default function CityPage() {
     const [searchTerm, setSearchTerm] = useState('');
     const [done, setDone] = useState(false);

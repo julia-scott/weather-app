@@ -46,9 +46,3 @@ export const TableTitle = styled.h4`
     text-align: left;
     margin: 5vh 0 2vh 0;
 `;
-
-export const TableStyle = styled.div`
-    align-content: center;
-    width: 70vw;
-    max-width: 870px;
-`;

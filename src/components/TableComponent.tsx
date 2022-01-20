@@ -1,5 +1,6 @@
 import React from "react";
-import { TableTitle, TableStyle } from "./../styles/StyledComponents";
+import { TableTitle } from "./../styles/StyledComponents";
+import { Flex } from '@cognite/cogs.js';
 
 type TableProps = {
     day: string,
@@ -30,26 +31,24 @@ export default function TableComponent({ day, myArray }: TableProps) {
     return (
         <>
             <TableTitle>{day}</TableTitle>
-            <TableStyle>
-                <div className="row">
-                    {
-                        newArray.map(e => {
-                            return(
-                                <div className="col">
-                                    {e.hour}
-                                    <img src={`https://openweathermap.org/img/wn/${e.icon}.png`} alt="weather"/>
-                                    <p>
-                                        <b>{e.max}&deg;C</b>
-                                    </p>
-                                    <p>
-                                        {e.min}&deg;C
-                                    </p>
-                                </div>
-                            );
-                        })
-                    }
-                </div>
-            </TableStyle>
+            <Flex direction="row" gap={50} justifyContent="left">
+                {
+                    newArray.map(e => {
+                        return(
+                            <Flex direction="column">
+                                {e.hour}
+                                <img src={`https://openweathermap.org/img/wn/${e.icon}.png`} alt="weather"/>
+                                <p>
+                                    <b>{e.max}&deg;C</b>
+                                </p>
+                                <p>
+                                    {e.min}&deg;C
+                                </p>
+                            </Flex>
+                        );
+                    })
+                }
+            </Flex>
         </>
     );
 }
