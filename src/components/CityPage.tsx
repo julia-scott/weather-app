@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { CityTitle } from "./../styles/StyledComponents";
 import OpenWeatherMap from 'openweathermap-ts';
 import LoadingPage from './LoadingPage';
-import { Input } from '@cognite/cogs.js';
+import { Input, Button } from '@cognite/cogs.js';
 
 export default function CityPage() {
     const [searchTerm, setSearchTerm] = useState('');
@@ -50,12 +50,11 @@ export default function CityPage() {
                 <form onSubmit={searchCity}>
                     <Input 
                         error={errorText}
-                        iconPlacement="right"
-                        icon="Search"
                         type='text'
                         name='cityname'
                         placeholder="Search for location..."
                     />
+                    <Button htmlType="submit" icon="Search"></Button>
                 </form>
             </CityTitle>
             {done ? (

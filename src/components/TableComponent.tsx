@@ -1,5 +1,5 @@
 import React from "react";
-import { TableTitle } from "./../styles/StyledComponents";
+import { TableTitle, ThemeProvider } from "./../styles/StyledComponents";
 import { Flex } from '@cognite/cogs.js';
 
 type TableProps = {
@@ -13,6 +13,10 @@ type TableProps = {
 }
 
 export default function TableComponent({ day, myArray }: TableProps) {
+    const theme = {
+        inputColor: "green",
+    };
+
     const date = new Date(day); // Selected date
     var formatedDate = date.toLocaleString('sv-SE', {
         day: '2-digit',
@@ -30,7 +34,9 @@ export default function TableComponent({ day, myArray }: TableProps) {
 
     return (
         <>
-            <TableTitle>{day}</TableTitle>
+            <ThemeProvider theme={theme}>
+                <TableTitle>{day}</TableTitle>
+            </ThemeProvider>
             <Flex direction="row" gap={48} justifyContent="left">
                 {
                     newArray.map(e => {

@@ -1,4 +1,6 @@
 import styled, { keyframes } from "styled-components";
+import { ThemeProvider } from 'styled-components';
+export { ThemeProvider };
 
 export const AppStyle = styled.div`
     text-align: center;
@@ -24,6 +26,10 @@ export const Title = styled.div`
 export const CityTitle = styled.div`
     display: flex;
     margin-top: 5vh;
+    form {
+        display: flex;
+        flex-direction: row;
+    }
     h4 {
         padding-right: 1vw;
         color: white;
@@ -45,6 +51,7 @@ export const CarouselStyle = styled.div`
 export const TableTitle = styled.h4`
     text-align: left;
     margin: 5vh 0 2vh 0;
+    color:${props => props.theme.inputColor ? props.theme.inputColor : "palevioletred"}
 `;
 
 const bounce = keyframes`
