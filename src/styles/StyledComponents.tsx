@@ -1,4 +1,6 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+import { ThemeProvider } from 'styled-components';
+export { ThemeProvider };
 
 export const AppStyle = styled.div`
     text-align: center;
@@ -7,17 +9,6 @@ export const AppStyle = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-`;
-
-export const LoadingStyle = styled.div`
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20vh;
-    h1, p {
-        color: white;
-    }
 `;
 
 export const Title = styled.div`
@@ -35,19 +26,14 @@ export const Title = styled.div`
 export const CityTitle = styled.div`
     display: flex;
     margin-top: 5vh;
+    form {
+        display: flex;
+        flex-direction: row;
+    }
     h4 {
         padding-right: 1vw;
         color: white;
     }
-    input {
-        outline: none;
-        border: none;
-        border-radius: 2px;
-    }
-`;
-
-export const ErrorText = styled.p`
-    color: red;
 `;
 
 export const Logo = styled.img`
@@ -65,10 +51,30 @@ export const CarouselStyle = styled.div`
 export const TableTitle = styled.h4`
     text-align: left;
     margin: 5vh 0 2vh 0;
+    color:${props => props.theme.inputColor ? props.theme.inputColor : "palevioletred"}
 `;
 
-export const TableStyle = styled.div`
-    align-content: center;
-    width: 70vw;
-    max-width: 870px;
+const bounce = keyframes`
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-5px);
+  }
+`;
+const bounceback = keyframes`
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-5px);
+  }
+`;
+
+export const Bounce = styled.img`
+    float: left;
+    height: calc(25px + 2vmin);
+    padding-right: 1vw;
+    animation: ${bounce} 0.5s infinite alternate;
+    -webkit-animation: ${bounceback} 0.5s infinite alternate;
 `;

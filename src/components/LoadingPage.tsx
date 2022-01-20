@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import ReactLoading from "react-loading";
 import WeatherPage from "./WeatherPage";
-import { LoadingStyle } from "./../styles/StyledComponents";
 import Geocode from "react-geocode";
+import { Loader } from '@cognite/cogs.js';
 
 type LoadingProps = {
     city: string
@@ -77,12 +76,7 @@ export default function LoadingPage({ city }: LoadingProps) {
     return(
         <>
             {!done ? (
-                // Display loading page when not done fetching data
-                <LoadingStyle>
-                    <h1>Fetching weather data for {city}</h1>
-                    <p>*elevator music*</p>
-                    <ReactLoading type="spokes" color="#F4D772" height={100} width={50}/>
-                </LoadingStyle>
+                <Loader infoTitle={`Fetching weather data for ${city}`}/>
             ) : (
                 // Display weather page when done fetching data
                 // Send API responses as props

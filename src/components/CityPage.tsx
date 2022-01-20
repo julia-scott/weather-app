@@ -1,11 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { CityTitle, ErrorText } from "./../styles/StyledComponents";
+import { CityTitle } from "./../styles/StyledComponents";
 import OpenWeatherMap from 'openweathermap-ts';
 import LoadingPage from './LoadingPage';
-
-type CityProps = {
-    e: React.FormEvent<HTMLFormElement>
-}
+import { Input, Button } from '@cognite/cogs.js';
 
 export default function CityPage() {
     const [searchTerm, setSearchTerm] = useState('');
@@ -51,18 +48,20 @@ export default function CityPage() {
             <CityTitle>
                 <h4>Enter a location:</h4>
                 <form onSubmit={searchCity}>
-                    <input 
+                    <Input 
+                        error={errorText}
                         type='text'
                         name='cityname'
                         placeholder="Search for location..."
                     />
+                    <Button htmlType="submit" icon="Search"></Button>
                 </form>
             </CityTitle>
-            <ErrorText>{errorText}</ErrorText>
             {done ? (
                 <LoadingPage city={searchTerm} />
             ) : (
-                <></>
+                <>
+                </>
             )}
         </>
     );
