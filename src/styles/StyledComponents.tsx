@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const AppStyle = styled.div`
     text-align: center;
@@ -45,4 +45,29 @@ export const CarouselStyle = styled.div`
 export const TableTitle = styled.h4`
     text-align: left;
     margin: 5vh 0 2vh 0;
+`;
+
+const bounce = keyframes`
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-5px);
+  }
+`;
+const bounceback = keyframes`
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-5px);
+  }
+`;
+
+export const Bounce = styled.img`
+    float: left;
+    height: calc(25px + 2vmin);
+    padding-right: 1vw;
+    animation: ${bounce} 0.5s infinite alternate;
+    -webkit-animation: ${bounceback} 0.5s infinite alternate;
 `;
