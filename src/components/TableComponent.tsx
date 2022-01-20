@@ -17,7 +17,7 @@ export default function TableComponent({ day, myArray }: TableProps) {
         day: '2-digit',
         year: 'numeric',
         month: '2-digit',
-        timeZone: 'CET'
+        timeZone: 'UTC'
     });
     const newArray = myArray.filter(e => {
         // Filter array to include only the selected date

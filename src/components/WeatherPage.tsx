@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from './../images/app_icon.png';
 import Carousel from 'react-multi-carousel';
 import "react-multi-carousel/lib/styles.css";
@@ -7,6 +7,7 @@ import TableComponent from "./TableComponent";
 import { Title, Logo, CarouselStyle } from "./../styles/StyledComponents";
 
 type WeatherProps = {
+    city: string,
     forecast: {
         date: string,
         icon: string,
@@ -20,7 +21,7 @@ type WeatherProps = {
     }[]
 }
 
-export default function WeatherPage({ forecast, daily }: WeatherProps) {
+export default function WeatherPage({ city, forecast, daily }: WeatherProps) {
     const dates = getDates(); // Returns list of dates of today and next 4 days
     const [hourlyDay, setHourlyDay] = useState(''); // Determines what day to display hourly forecast
     const responsive = { // Display settings for react-multi-carousel
@@ -50,7 +51,7 @@ export default function WeatherPage({ forecast, daily }: WeatherProps) {
         <>
             <Title>
                 <Logo src={logo} className="App-logo" alt="logo"/>
-                <h1>Oslo, Norway Weather Forecast</h1>
+                <h1>{city} Weather Forecast</h1>
             </Title>
             <CarouselStyle>
                 <Carousel 
@@ -76,14 +77,14 @@ export default function WeatherPage({ forecast, daily }: WeatherProps) {
                 </Carousel>
             </CarouselStyle>
 
-            <TableComponent day = {hourlyDay} myArray = {forecast}/>
+            <TableComponent day = {hourlyDay} myArray = {forecast} />
         </>
     );
 }
 
 function getDates() {
     var dates = [];
-    var startDate = new Date(); // Today's date
+    var startDate = new Date(new Date().toLocaleString('en-US', { timeZone: "UTC" })); // Today's date
     var nextDate = new Date(startDate);
 
     // Get 4 dates past today
@@ -102,7 +103,7 @@ function formatDate(date: Date) {
         day: 'numeric',
         year: 'numeric',
         month: 'short',
-        timeZone: 'CET'
+        timeZone: 'UTC'
     });
     return (newDate);
 }
