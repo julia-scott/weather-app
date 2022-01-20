@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { CityTitle, ErrorText } from "./../styles/StyledComponents";
+import { CityTitle } from "./../styles/StyledComponents";
 import OpenWeatherMap from 'openweathermap-ts';
 import LoadingPage from './LoadingPage';
+import { Input } from '@cognite/cogs.js';
 
 type CityProps = {
     e: React.FormEvent<HTMLFormElement>
@@ -51,18 +52,21 @@ export default function CityPage() {
             <CityTitle>
                 <h4>Enter a location:</h4>
                 <form onSubmit={searchCity}>
-                    <input 
+                    <Input 
+                        error={errorText}
+                        iconPlacement="right"
+                        icon="Search"
                         type='text'
                         name='cityname'
                         placeholder="Search for location..."
                     />
                 </form>
             </CityTitle>
-            <ErrorText>{errorText}</ErrorText>
             {done ? (
                 <LoadingPage city={searchTerm} />
             ) : (
-                <></>
+                <>
+                </>
             )}
         </>
     );

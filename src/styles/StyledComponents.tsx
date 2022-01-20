@@ -39,15 +39,6 @@ export const CityTitle = styled.div`
         padding-right: 1vw;
         color: white;
     }
-    input {
-        outline: none;
-        border: none;
-        border-radius: 2px;
-    }
-`;
-
-export const ErrorText = styled.p`
-    color: red;
 `;
 
 export const Logo = styled.img`
