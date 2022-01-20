@@ -15,7 +15,9 @@ export const LoadingStyle = styled.div`
     flex-direction: column;
     align-items: center;
     margin-top: 20vh;
-    color: white;
+    h1, p {
+        color: white;
+    }
 `;
 
 export const Title = styled.div`
@@ -25,7 +27,9 @@ export const Title = styled.div`
     justify-content: center;
     font-size: calc(10px + 2vmin);
     margin: 4vh;
-    color: white;
+    h1 {
+        color: white;
+    }
 `;
 
 export const CityTitle = styled.div`
