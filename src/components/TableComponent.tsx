@@ -31,7 +31,7 @@ export default function TableComponent({ day, myArray }: TableProps) {
     return (
         <>
             <TableTitle>{day}</TableTitle>
-            <Flex direction="row" gap={50} justifyContent="left">
+            <Flex direction="row" gap={48} justifyContent="left">
                 {
                     newArray.map(e => {
                         return(
