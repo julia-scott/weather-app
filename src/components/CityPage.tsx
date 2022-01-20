@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Title } from "./../styles/StyledComponents";
+import { CityTitle, ErrorText } from "./../styles/StyledComponents";
 import OpenWeatherMap from 'openweathermap-ts';
 import LoadingPage from './LoadingPage';
 
@@ -15,15 +15,18 @@ export default function CityPage() {
 
     const searchCity = (e: React.FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
-        setDone(false);
+        setErrorText(''); // Reset errortext on submit
+        setDone(false); // Display loading page for every search
         const target = e.target as typeof e.target & {
             cityname: { value: string };
         };
         setSearchTerm(target.cityname.value);
+        target.cityname.value = ''; //Clear search bar after submit
     };
 
     useEffect(() => {
-        if (isMounted.current) {
+        // Do not execute on mount
+        if (isMounted.current && searchTerm) {
             const openWeather = new OpenWeatherMap({
                 apiKey: process.env.REACT_APP_API_KEY as string
             });
@@ -45,17 +48,17 @@ export default function CityPage() {
 
     return(
         <>
-            <Title>
-                <h1>Enter a city</h1>
-            </Title>
-            <form onSubmit={searchCity}>
-                <input 
-                    type='text'
-                    name='cityname'
-                    placeholder="Search for location..." 
-                />
-            </form>
-            <p>{errorText}</p>
+            <CityTitle>
+                <h4>Enter a location:</h4>
+                <form onSubmit={searchCity}>
+                    <input 
+                        type='text'
+                        name='cityname'
+                        placeholder="Search for location..."
+                    />
+                </form>
+            </CityTitle>
+            <ErrorText>{errorText}</ErrorText>
             {done ? (
                 <LoadingPage city={searchTerm} />
             ) : (

@@ -14,7 +14,7 @@ export const LoadingStyle = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 5vh;
+    margin-top: 20vh;
     color: white;
 `;
 
@@ -24,8 +24,26 @@ export const Title = styled.div`
     align-items: center;
     justify-content: center;
     font-size: calc(10px + 2vmin);
-    margin: 5vh;
+    margin: 4vh;
     color: white;
+`;
+
+export const CityTitle = styled.div`
+    display: flex;
+    margin-top: 5vh;
+    h4 {
+        padding-right: 1vw;
+        color: white;
+    }
+    input {
+        outline: none;
+        border: none;
+        border-radius: 2px;
+    }
+`;
+
+export const ErrorText = styled.p`
+    color: red;
 `;
 
 export const Logo = styled.img`
