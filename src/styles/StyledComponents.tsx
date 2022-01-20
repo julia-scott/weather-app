@@ -9,17 +9,6 @@ export const AppStyle = styled.div`
     align-items: center;
 `;
 
-export const LoadingStyle = styled.div`
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20vh;
-    h1, p {
-        color: white;
-    }
-`;
-
 export const Title = styled.div`
     display: flex;
     flex-direction: row;

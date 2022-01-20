@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ReactLoading from "react-loading";
 import WeatherPage from "./WeatherPage";
-import { LoadingStyle } from "./../styles/StyledComponents";
 import Geocode from "react-geocode";
 import { Loader } from '@cognite/cogs.js';
 
