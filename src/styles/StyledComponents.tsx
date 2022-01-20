@@ -14,7 +14,7 @@ export const LoadingStyle = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    margin: 5vh;
     color: white;
 `;
 

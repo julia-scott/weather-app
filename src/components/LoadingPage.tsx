@@ -42,33 +42,35 @@ export default function LoadingPage({ city }: LoadingProps) {
                     console.error(error);
                 }
             );
-            Promise.all([
-                fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&id=3143244&appid=${apiKey}&units=metric`),
-                fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&appid=${apiKey}&exclude=current,minutely,hourly,alerts&units=metric`)
-                ]).then((responses) => {
-                    return Promise.all(responses.map(function (response) {
-                        return response.json();
-                    }));
-                }).then((data) => {
-                    setForecastData(data[0].list.map((e: ForecastType) => {
-                        return ({
-                            date: e.dt_txt,
-                            icon: e.weather[0].icon,
-                            max: Math.round(e.main.temp_max), 
-                            min: Math.round(e.main.temp_min)
-                        });
-                    })); // Variable for forecast API response
-                    setDailyData(data[1].daily.map((e: DailyType) => {
-                        return ({
-                            icon: e.weather[0].icon,
-                            description: e.weather[0].description,
-                            temp: e.temp.day
-                        })
-                    })); // Variable for onecall API response
-                    setDone(true); // State variable, determines when to show loading page
-                }).catch((error) => {
-                    console.log(error);
+            if (lat !== 0 && lng !== 0) {
+                Promise.all([
+                    fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&id=3143244&appid=${apiKey}&units=metric`),
+                    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&appid=${apiKey}&exclude=current,minutely,hourly,alerts&units=metric`)
+                    ]).then((responses) => {
+                        return Promise.all(responses.map(function (response) {
+                            return response.json();
+                        }));
+                    }).then((data) => {
+                        setForecastData(data[0].list.map((e: ForecastType) => {
+                            return ({
+                                date: e.dt_txt,
+                                icon: e.weather[0].icon,
+                                max: Math.round(e.main.temp_max), 
+                                min: Math.round(e.main.temp_min)
+                            });
+                        })); // Variable for forecast API response
+                        setDailyData(data[1].daily.map((e: DailyType) => {
+                            return ({
+                                icon: e.weather[0].icon,
+                                description: e.weather[0].description,
+                                temp: e.temp.day
+                            })
+                        })); // Variable for onecall API response
+                        setDone(true); // State variable, determines when to show loading page
+                    }).catch((error) => {
+                        console.log(error);
                 });
+            }
         }, 2000);
     }, [city, lat, lng]);
 
